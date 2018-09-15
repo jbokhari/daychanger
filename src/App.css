@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway+Dots,Raleway');
+
+body,html,#root {
+	height: 100%;
+}
+.App {
+	display: flex;
+	background: linear-gradient(#e5a883, #013);
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+.card {
+	max-width: 100%;
+	width: 750px;
+	border-radius: 3px;
+	background: white;
+	padding: 1rem;
+	box-sizing: border-box;
+	font-family: "Raleway Dots", Raleway, sans-serif;
+}
+.card .header {
+	text-align: center;
+	border-bottom: 1px solid #eef;
+	margin-bottom: 1rem;
+	color: #aaa;
+	text-transform: uppercase;
+}
+.card .main {
+	font-size: 5rem;
+	margin: 3rem auto;
+	text-align: center;
+	font-family: Raleway, sans-serif;
+	color: #444;
+}
+.card button {
+	text-transform: uppercase;
+	width: 100%;
+	box-shadow: none;
+	border: 1px solid #eef;
+	font-size: 1rem;
+	margin-top :1rem;
+	color: #aaa;
+	cursor: pointer;
+	outline:none;
+	padding: 1em 0;
+}
+.card button:hover {
+	background: #eef;
+	color: grey;
+}
