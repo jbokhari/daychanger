@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { faRedo } from '@fortawesome/free-solid-svg-icons'
 
+import ReactMarkdown from 'react-markdown';
+
 library.add(faArrowLeft)
 library.add(faRedo)
 
@@ -35,7 +37,7 @@ export default class Card extends React.Component {
 				</header>
 				<div className={mainSectionClasses.join(" ")}>
 					<div className="overlay"></div>
-					{this.props.content}
+					<ReactMarkdown source={this.props.content} />
 				</div>			
 				<footer>
 					<button disabled={!lastEnabled} className="last" onClick={this.props.onClickLastCard}><FontAwesomeIcon icon="arrow-left" /></button>

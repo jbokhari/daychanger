@@ -4,6 +4,7 @@ import './App.css';
 import Card from './Card.js';
 import CardData from './api/mock/card-data.js';
 
+
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
@@ -23,6 +24,7 @@ class App extends Component {
 
 	handleOnClickNewCard(){
 
+		var self = this;
 		const cards = this.state.cards;
 		let history = this.state.history.slice();
 		if (this.state.loading || history.length >= cards.length )
@@ -40,12 +42,12 @@ class App extends Component {
 			currentCard : newIndex,
 			history: history
 		});
-		var self = this;
 		setTimeout(()=>{self.setState({loading: false})}, 500);
 	}
 
 	handleOnClickLastCard(){
 
+		var self = this;
 		const cards = this.state.cards;
 		let history = this.state.history.slice();
 		if (this.state.loading || history.length <= 1 )
@@ -53,14 +55,14 @@ class App extends Component {
 
 		const current = this.state.currentCard;
 		history = history.slice(0, history.length - 1);
-		console.log(history);
 		const newIndex = history[history.length - 1];
+
 		this.setState({
 			loading: true,
 			currentCard : newIndex,
 			history: history
 		});
-		var self = this;
+
 		setTimeout(()=>{self.setState({loading: false})}, 500);
 	}
 

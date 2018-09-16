@@ -39,7 +39,7 @@ body,html,#root {
 .card .main .overlay {
 	position: absolute;
 	left:0;right:0;top:0;bottom:0;
-	background: linear-gradient(rgba(255,255,255,.2),rgba(255,255,255,0),rgba(255,255,255,.2))
+	background: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,.1),rgba(255,255,255,0))
 }
 .card button {
 	text-transform: uppercase;
