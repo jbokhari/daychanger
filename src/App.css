@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway+Dots,Raleway');
+/*@import url('https://fonts.googleapis.com/css?family=Raleway+Dots,Raleway');*/
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
 
 body,html,#root {
 	height: 100%;
@@ -17,20 +18,21 @@ body,html,#root {
 	background: white;
 	padding: 1rem;
 	box-sizing: border-box;
-	font-family: "Raleway Dots", Raleway, sans-serif;
+	font-family: "Nanum Gothic", Raleway, sans-serif;
 }
 .card .header {
 	text-align: center;
+	padding: 0 0 1rem;
 	border-bottom: 1px solid #eef;
 	margin-bottom: 1rem;
 	color: #aaa;
 	text-transform: uppercase;
 }
 .card .main {
-	font-size: 5rem;
+	font-size: 3rem;
 	margin: 3rem auto;
 	text-align: center;
-	font-family: Raleway, sans-serif;
+	font-family: "Nanum Gothic", sans-serif;
 	color: #444;
 }
 .card button {
@@ -46,6 +48,6 @@ body,html,#root {
 	padding: 1em 0;
 }
 .card button:hover {
-	background: #eef;
+	background: #f8f7f7;
 	color: grey;
 }

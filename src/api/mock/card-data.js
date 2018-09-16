@@ -18,7 +18,7 @@ export default [
 		content: "Let people help you"
 	},
 	{
-		content: "If you do what you haev always done, you will get what you've always gotten"
+		content: "If you do what you have always done, you will get what you have always gotten"
 	},
 	{
 		content: "Be honest with yourself"
@@ -90,7 +90,7 @@ export default [
 		content: "Decide what feels right to you, then do it"
 	},
 	{
-		content: "Use the phrases \"I love you\", \"I forgive you\", \"Forgive me\" and I'm sorry\""
+		content: "Use the phrases &dquo;I love you&rdquo;, \"I forgive you\", \"Forgive me\" and I'm sorry\""
 	},
 	{
 		content: "If you are an adult, you are capable of making your own rules"
