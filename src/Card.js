@@ -7,10 +7,15 @@ import { faRedo } from '@fortawesome/free-solid-svg-icons'
 
 import ReactMarkdown from 'react-markdown';
 
+import Search from './Search.js';
+
 library.add(faArrowLeft)
 library.add(faRedo)
 
 export default class Card extends React.Component {
+	handleSearch(){
+
+	}
 	render(){
 		const cardNumber = this.props.cardNumber;
 		const classes = [
@@ -27,7 +32,10 @@ export default class Card extends React.Component {
 		return (
 			<div className={classes.join(" ")}>
 				<header className="header">
-					Card #{cardNumber}
+					<div className="card-number">Card #{cardNumber}</div>
+					<div className="search">
+						<Search searchValue={this.props.searchValue} handleSearch={this.props.handleSearch} handleFocus={this.props.handleSearchFocus} showSearchResults={this.props.showSearchResults} searchResultsList={this.props.searchResultsList} />
+					</div>
 				</header>
 				<div className={mainSectionClasses.join(" ")}>
 					<div className="overlay"></div>

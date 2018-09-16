@@ -90,7 +90,7 @@ export default [
 		content: "Decide what feels right to you **then do it**"
 	},
 	{
-		content: "Use these phrases more often: &ldquo;I love you&rdquo;, &ldquo;I forgive you&rdquo;, &ldquo;forgive me&rdquo; and &ldquo;I&rsquo;m sorry&rdquo;"
+		content: "Use these phrases more often:\n - &ldquo;I love you&rdquo;\n - &ldquo;I forgive you&rdquo;\n - &ldquo;forgive me&rdquo;\n - &ldquo;I&rsquo;m sorry&rdquo;"
 	},
 	{
 		content: "If you are an adult, you are capable of making your own rules"
