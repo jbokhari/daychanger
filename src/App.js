@@ -12,28 +12,53 @@ class App extends Component {
 
 	constructor(props){
 		super(props);
+		const startingCard = getRandomInt(CardData.length);
 		this.state = {
 			cards : CardData,
-			currentCard : getRandomInt(CardData.length),
+			currentCard : startingCard,
 			loading : false,
-			history : []
+			history : [startingCard]
 		};
-		console.log(this.state.cards, getRandomInt(CardData.length))
 	}
 
-	handleOnClick(){
-		if (this.state.loading)
-			return;
-		const current = this.state.currentCard;
+	handleOnClickNewCard(){
+
 		const cards = this.state.cards;
+		let history = this.state.history.slice();
+		if (this.state.loading || history.length >= cards.length )
+			return;
+
+		const current = this.state.currentCard;
 		let newIndex = getRandomInt(cards.length);
-		console.log(newIndex, current);
-		while ( newIndex === current ){
+		while ( history.indexOf(newIndex) !== -1 ){
 			newIndex = getRandomInt(cards.length);
 		}
+		history = history.concat(newIndex);
+		console.log(history);
 		this.setState({
 			loading: true,
-			currentCard : newIndex
+			currentCard : newIndex,
+			history: history
+		});
+		var self = this;
+		setTimeout(()=>{self.setState({loading: false})}, 500);
+	}
+
+	handleOnClickLastCard(){
+
+		const cards = this.state.cards;
+		let history = this.state.history.slice();
+		if (this.state.loading || history.length <= 1 )
+			return;
+
+		const current = this.state.currentCard;
+		history = history.slice(0, history.length - 1);
+		console.log(history);
+		const newIndex = history[history.length - 1];
+		this.setState({
+			loading: true,
+			currentCard : newIndex,
+			history: history
 		});
 		var self = this;
 		setTimeout(()=>{self.setState({loading: false})}, 500);
@@ -42,18 +67,20 @@ class App extends Component {
 	render() {
 		const cards = this.state.cards;
 		const currentCard = this.state.currentCard;
-		console.log(currentCard);
 		const content = cards[currentCard].content;
 		const cardNumber = currentCard + 1;
 		const classList = ['App', 'test', 'poop'];
 		const loading = this.state.loading;
+		const history = this.state.history;
 		return (
 			<div className={classList.join(" ")}>
 				<Card 
+					history={history}
 					loading={loading}
 					content={content}
 					cardNumber={cardNumber}
-					onClickNextCard={()=>this.handleOnClick()}
+					onClickNewCard={()=>this.handleOnClickNewCard()}
+					onClickLastCard={()=>this.handleOnClickLastCard()}
 				/>
 			</div>
 		);

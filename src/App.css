@@ -29,11 +29,17 @@ body,html,#root {
 	text-transform: uppercase;
 }
 .card .main {
+	position: relative;
 	font-size: 3rem;
 	margin: 3rem auto;
 	text-align: center;
 	font-family: "Nanum Gothic", sans-serif;
 	color: #444;
+}
+.card .main .overlay {
+	position: absolute;
+	left:0;right:0;top:0;bottom:0;
+	background: linear-gradient(rgba(255,255,255,.2),rgba(255,255,255,0),rgba(255,255,255,.2))
 }
 .card button {
 	text-transform: uppercase;
@@ -47,7 +53,22 @@ body,html,#root {
 	outline:none;
 	padding: 1em 0;
 }
+.card button[disabled]:hover,
+.card button[disabled] {
+	cursor: not-allowed;
+	background: #f8f7f7;
+	color: #ddd;
+}
 .card button:hover {
 	background: #f8f7f7;
 	color: grey;
+}
+.card footer {
+	display: flex;
+}
+.card footer button.new {
+	flex: 5 1 auto;
+}
+.card footer button.last {
+	flex: 1 1 4rem;
 }

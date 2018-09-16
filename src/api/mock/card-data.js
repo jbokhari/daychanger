@@ -6,7 +6,7 @@ export default [
 		content: "Think abundance"
 	},
 	{
-		content: "Whatever needs to e done, do it now"
+		content: "Whatever needs to be done, do it now"
 	},
 	{
 		content: "Say no"
@@ -75,7 +75,7 @@ export default [
 		content: "Don't do anything in secret"
 	},
 	{
-		content: "Be willing to let go fof what you have so that you can get what you want"
+		content: "Be willing to let go of what you have so that you can get what you want"
 	},
 	{
 		content: "Put yourself first"

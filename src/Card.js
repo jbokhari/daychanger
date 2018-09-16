@@ -24,6 +24,7 @@ export default class Card extends React.Component {
 		const mainSectionClasses = [
 			"main"
 		];
+		const lastEnabled = (this.props.history.length > 1)
 		if ( this.props.loading ){
 			mainSectionClasses.push("fadeIn animated");
 		}
@@ -33,10 +34,12 @@ export default class Card extends React.Component {
 					Card #{cardNumber}
 				</header>
 				<div className={mainSectionClasses.join(" ")}>
+					<div className="overlay"></div>
 					{this.props.content}
 				</div>			
 				<footer>
-					<button onClick={this.props.onClickNextCard}><FontAwesomeIcon icon="redo" /> New Card</button>
+					<button disabled={!lastEnabled} className="last" onClick={this.props.onClickLastCard}><FontAwesomeIcon icon="arrow-left" /></button>
+					<button className="new" onClick={this.props.onClickNewCard}><FontAwesomeIcon icon="redo" /> New Card</button>
 				</footer>
 			</div>
 		);
