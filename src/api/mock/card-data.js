@@ -60,7 +60,7 @@ export default [
 		content: "Mindfulness means always meditating"
 	},
 	{
-		content: "Stop blaming, victim&rsquo;s never succeed"
+		content: "Stop blaming, victims never succeed"
 	},
 	{
 		content: "Be clear and direct"
@@ -90,7 +90,7 @@ export default [
 		content: "Decide what feels right to you **then do it**"
 	},
 	{
-		content: "Use the phrases: &ldquo;I love you&rdquo;, &ldquo;I forgive you&rdquo;, &ldquo;Forgive me&rdquo; and &ldquo;I&rsquo;m sorry&rdquo;"
+		content: "Use these phrases more often: &ldquo;I love you&rdquo;, &ldquo;I forgive you&rdquo;, &ldquo;forgive me&rdquo; and &ldquo;I&rsquo;m sorry&rdquo;"
 	},
 	{
 		content: "If you are an adult, you are capable of making your own rules"
@@ -103,5 +103,8 @@ export default [
 	},
 	{
 		content: "Try asking for what you want"
+	},
+	{
+		content: "Just do better than you did yesterday"
 	}
 ];

@@ -11,13 +11,7 @@ library.add(faArrowLeft)
 library.add(faRedo)
 
 export default class Card extends React.Component {
-	constructor(props){
-		super(props);
-	}
 	render(){
-		const header = "";
-		const content = "";
-		const footer = "";
 		const cardNumber = this.props.cardNumber;
 		const classes = [
 			"card",

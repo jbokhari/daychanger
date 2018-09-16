@@ -30,13 +30,11 @@ class App extends Component {
 		if (this.state.loading || history.length >= cards.length )
 			return;
 
-		const current = this.state.currentCard;
 		let newIndex = getRandomInt(cards.length);
 		while ( history.indexOf(newIndex) !== -1 ){
 			newIndex = getRandomInt(cards.length);
 		}
 		history = history.concat(newIndex);
-		console.log(history);
 		this.setState({
 			loading: true,
 			currentCard : newIndex,
@@ -48,12 +46,10 @@ class App extends Component {
 	handleOnClickLastCard(){
 
 		var self = this;
-		const cards = this.state.cards;
 		let history = this.state.history.slice();
 		if (this.state.loading || history.length <= 1 )
 			return;
 
-		const current = this.state.currentCard;
 		history = history.slice(0, history.length - 1);
 		const newIndex = history[history.length - 1];
 
@@ -71,7 +67,7 @@ class App extends Component {
 		const currentCard = this.state.currentCard;
 		const content = cards[currentCard].content;
 		const cardNumber = currentCard + 1;
-		const classList = ['App', 'test', 'poop'];
+		const classList = ['App'];
 		const loading = this.state.loading;
 		const history = this.state.history;
 		return (
