@@ -66,10 +66,10 @@ export default [
 		content: "Be clear and direct"
 	},
 	{
-		content: "Control is an illusion; let go and let life happen"
+		content: "Control is an illusion; \n\nLet go and let life happen"
 	},
 	{
-		content: "Have fun; if you&rsquo;re not enjoying your time, something is wrong"
+		content: "Have fun; If you&rsquo;re not enjoying your time, something is wrong"
 	},
 	{
 		content: "Don&rsquo;t do anything in secret"
@@ -81,13 +81,13 @@ export default [
 		content: "Put yourself first"
 	},
 	{
-		content: "No matter what happens you will handle it"
+		content: "No matter what happens \n\n**you will handle it**"
 	},
 	{
 		content: "Live with *integrity*"
 	},
 	{
-		content: "Decide what feels right to you **then do it**"
+		content: "Decide what feels right to you \n\n**then do it**"
 	},
 	{
 		content: "Use these phrases more often:\n - &ldquo;I love you&rdquo;\n - &ldquo;I forgive you&rdquo;\n - &ldquo;forgive me&rdquo;\n - &ldquo;I&rsquo;m sorry&rdquo;"
