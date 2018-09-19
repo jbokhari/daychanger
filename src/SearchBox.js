@@ -8,6 +8,6 @@ library.add(faSearch)
 
 export default function SearchBox(props) {
 	return (
-		<span><FontAwesomeIcon icon="search" /> <input type="text" value={props.searchValue} className="search-box" onFocus={props.handleFocus} onChange={props.handleChange} /></span>
+		<span><FontAwesomeIcon icon="search" /> <input type="text" value={props.searchValue} className="search-box" onFocus={props.handleFocus} onBlur={props.handleBlur} onChange={props.handleChange} /></span>
 	);
 }

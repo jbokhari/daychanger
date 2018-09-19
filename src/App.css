@@ -118,6 +118,10 @@ body,html,#root {
 	font-family: "Nanum Gothic", sans-serif;
 	color: #444;
 }
+.card .main ul {
+	list-style-type: circle;
+	list-style-position: inside;
+}
 
 .card .main .overlay {
 	position: absolute;

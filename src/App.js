@@ -78,7 +78,6 @@ class App extends Component {
 	gotToCard(index){
 
 		var self = this;
-		const cards = this.state.cards;
 		let history = this.state.history.slice();
 		const currentCard = this.state.currentCard;
 		if ( this.state.loading || index === currentCard )
@@ -108,8 +107,7 @@ class App extends Component {
 				let markedContent = cards[i].content;
 			 	if (content.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1){
 			 		const regEx = new RegExp('\\*{0,2}' + searchValue + '\\*{0,2}', "gi");
-			 		console.log(markedContent, regEx);
-			 		markedContent = markedContent.replace(/(\*|\n|\-\s)/g, '');
+			 		markedContent = markedContent.replace(/(\*|\n|-\s)/g, '');
 			 		markedContent = markedContent.replace(regEx, (r) => {
 			 			return "**" + r + "**";
 			 		});
@@ -145,6 +143,14 @@ class App extends Component {
 
 	}
 
+	handleSearchBlur(){
+		// Ruh roh! apparently blur happens before the click event 
+		// (eg search result item) ... hmm
+		// const showSearchResults = this.state.showSearchResults;
+		// if ( showSearchResults )
+		// 	this.setState({showSearchResults: false});
+	}
+
 	handleSearchFocus(){
 		const showSearchResults = this.state.showSearchResults;
 		const searchResults = this.state.searchResults;
@@ -172,6 +178,7 @@ class App extends Component {
 					cardNumber={cardNumber}
 					searchValue={searchValue}
 					handleSearch={(e)=>this.handleSearch(e)}
+					handleSearchBlur={(e)=>this.handleSearchBlur(e)}
 					handleSearchFocus={(e)=>this.handleSearchFocus(e)}
 					onClickNewCard={()=>this.handleOnClickNewCard()}
 					onClickLastCard={()=>this.handleOnClickLastCard()}

@@ -34,7 +34,7 @@ export default class Card extends React.Component {
 				<header className="header">
 					<div className="card-number">Card #{cardNumber}</div>
 					<div className="search">
-						<Search searchValue={this.props.searchValue} handleSearch={this.props.handleSearch} handleFocus={this.props.handleSearchFocus} showSearchResults={this.props.showSearchResults} searchResultsList={this.props.searchResultsList} />
+						<Search searchValue={this.props.searchValue} handleSearch={this.props.handleSearch} handleSearchBlur={this.props.handleSearchBlur} handleSearchFocus={this.props.handleSearchFocus} showSearchResults={this.props.showSearchResults} searchResultsList={this.props.searchResultsList} />
 					</div>
 				</header>
 				<div className={mainSectionClasses.join(" ")}>
