@@ -174,10 +174,15 @@ class App extends Component {
 		var self = this;
 		let history = this.state.history.slice();
 		const currentCard = this.state.currentCard;
-		if ( this.state.loading || index === currentCard )
+		if ( index === currentCard ){
+			this.setState({
+				searchVisible : false
+			});
 			return;
+		}
 
 		history = history.concat(index);
+		clearTimeout(this.loadTimer);
 		this.setState({
 			loading: true,
 			currentCard : index,
