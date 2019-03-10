@@ -3,6 +3,7 @@ import './animate.css';
 import './App.css';
 import Card from './Card.js';
 import CardData from './api/mock/card-data.js';
+import Search from './Search.js';
 
 import ReactMarkdown from 'react-markdown';
 
@@ -15,6 +16,12 @@ class App extends Component {
 	constructor(props){
 		super(props);
 		const startingCard = getRandomInt(CardData.length);
+		this.handleOnClickNewCard = this.handleOnClickNewCard.bind(this);
+		this.handleOnClickLastCard = this.handleOnClickLastCard.bind(this);
+		this.handleSearch = this.handleSearch.bind(this);
+		this.handleClickOutside = this.handleClickOutside.bind(this);
+		this.handleSearchFocus = this.handleSearchFocus.bind(this);
+
 		this.state = {
 			cards : CardData,
 			currentCard : startingCard,
@@ -22,13 +29,22 @@ class App extends Component {
 			history : [startingCard],
 			searchValue : '',
 			searchResults: [],
-			showSearchResults: false
+			searchVisible: false
 		};
 	}
 
 	handleOnClickNewCard(){
 
-		var self = this;
+		const self = this;
+		const shuffle = false; // old way was random
+		if (!shuffle){
+			this.setState(state => ({
+				loading: true,
+				currentCard : (state.currentCard + 1) % state.cards.length,
+			}));
+			setTimeout(()=>{self.setState({loading: false})}, 500);
+			return;
+		}
 		const cards = this.state.cards;
 		let history = this.state.history.slice();
 
@@ -51,11 +67,19 @@ class App extends Component {
 	}
 
 	handleOnClickLastCard(){
+		const self = this;
+		if (this.state.loading )
+			return;
+		this.setState(state => ({
+			loading: true,
+			currentCard: (state.currentCard - 1) >= 0 ? state.currentCard - 1 : (state.cards.length - 1)
+		}));
+		setTimeout(()=>{self.setState({loading: false})}, 500);
+	}
+	handleOnClickLastCardWithHistory(){
 
 		var self = this;
 		let history = this.state.history.slice();
-		if (this.state.loading || history.length <= 1 )
-			return;
 
 		history = history.slice(0, history.length - 1);
 		const newIndex = history[history.length - 1];
@@ -69,36 +93,11 @@ class App extends Component {
 		setTimeout(()=>{self.setState({loading: false})}, 500);
 	}
 
-	clearSearch(){
-		this.setState({
-			searchValue: ''
-		});
-	}
-
-	gotToCard(index){
-
-		var self = this;
-		let history = this.state.history.slice();
-		const currentCard = this.state.currentCard;
-		if ( this.state.loading || index === currentCard )
-			return;
-
-		history = history.concat(index);
-		this.setState({
-			loading: true,
-			currentCard : index,
-			history: history,
-			showSearchResults : false
-		});
-		setTimeout(()=>{self.setState({loading: false})}, 500);
-
-	}
-
 	handleSearch(e){
 		const searchValue = e.target.value.replace(/[^a-zA-Z0-9\s]/, '');
 		const currentCard = this.state.currentCard;
 		let searchResults = [];
-		let showSearchResults = false;
+		let searchVisible = false;
 		if ( e.target.value.length > 2 ){
 			const cards = this.state.cards.slice();
 			
@@ -127,37 +126,66 @@ class App extends Component {
 				let noResults = "Sorry, no results were found :(";
 				searchResults.push(
 					<li key={0}>
-						<ReactMarkdown 
-							source={noResults}
-						/>
+						<ReactMarkdown source={noResults} />
 					</li>
 	 			);
 			}
-			showSearchResults = true;
+			searchVisible = true;
 		}
 		this.setState({
 			searchValue: searchValue,
 			searchResults : searchResults,
-			showSearchResults: showSearchResults
+			searchVisible: searchVisible
 		});
 
 	}
 
-	handleSearchBlur(){
-		// Ruh roh! apparently blur happens before the click event 
-		// (eg search result item) ... hmm
-		// const showSearchResults = this.state.showSearchResults;
-		// if ( showSearchResults )
-		// 	this.setState({showSearchResults: false});
+	handleClickOutside(e){
+		console.log(e, this);
+		if ( this.node.contains(e.target) ){
+			return;
+		} else {
+			this.setState({searchVisible: false});
+		}
 	}
 
 	handleSearchFocus(){
-		const showSearchResults = this.state.showSearchResults;
+		const searchVisible = this.state.searchVisible;
 		const searchResults = this.state.searchResults;
-		if ( !showSearchResults && searchResults.length > 0 )
-			this.setState({showSearchResults: true});
+		if ( !searchVisible && searchResults.length > 0 ){
+			this.setState({searchVisible: true});
+			// document.addEventListener('click', this.handleClickOutside, false);
+		}
 	}
 
+	clearSearch(){
+		this.setState({
+			searchValue: ''
+		});
+	}
+
+	gotToCard(index){
+
+		var self = this;
+		let history = this.state.history.slice();
+		const currentCard = this.state.currentCard;
+		if ( this.state.loading || index === currentCard )
+			return;
+
+		history = history.concat(index);
+		this.setState({
+			loading: true,
+			currentCard : index,
+			history: history,
+			searchVisible : false
+		});
+		setTimeout(()=>{self.setState({loading: false})}, 500);
+
+	}
+
+	componentDidMount(){
+
+	}
 	render() {
 		const cards = this.state.cards;
 		const currentCard = this.state.currentCard;
@@ -168,23 +196,49 @@ class App extends Component {
 		const history = this.state.history;
 		const searchValue = this.state.searchValue;
 		const searchResults = this.state.searchResults;
-		const showSearchResults = this.state.showSearchResults;
+		const searchVisible = this.state.searchVisible;
+		const count = this.state.cards.length;
+
+		const onClickNewCard = this.handleOnClickNewCard;
+		const onClickLastCard = this.handleOnClickLastCard;
+		const lastEnabled = (history.length > 1);
+		const handleSearch = (e) => this.handleSearch(e);
+		const handleSearchFocus = (e) => this.handleSearchFocus(e);
+		const handleClickOutside = (e) => this.handleClickOutside(e);
+		const date = new Date()
+		const year = date.getFullYear();
 		return (
 			<div className={classList.join(" ")}>
+				<header className="header">
+					<div className="card-number">
+						Card {cardNumber} of {count}
+					</div>
+					<Search
+						handleSearch={handleSearch} 
+						handleSearchFocus={handleSearchFocus} 
+						handleClickOutsite={handleClickOutside}
+						searchValue={searchValue}
+						showSearchResults={searchVisible}
+						searchResultsList={searchResults}
+					/>
+				</header>
 				<Card 
 					history={history}
 					loading={loading}
 					content={content}
 					cardNumber={cardNumber}
-					searchValue={searchValue}
-					handleSearch={(e)=>this.handleSearch(e)}
-					handleSearchBlur={(e)=>this.handleSearchBlur(e)}
-					handleSearchFocus={(e)=>this.handleSearchFocus(e)}
-					onClickNewCard={()=>this.handleOnClickNewCard()}
-					onClickLastCard={()=>this.handleOnClickLastCard()}
-					showSearchResults={showSearchResults}
-					searchResultsList={searchResults}
 				/>
+					<button
+						className="last"
+						onClick={onClickLastCard}>
+					</button>
+					<button
+						className="new"
+						onClick={onClickNewCard}>
+					</button>
+					<footer>
+						&copy; {year} jameel.io
+					</footer>
 			</div>
 		);
 	}

@@ -1,110 +1,125 @@
 export default [
 	{
-		content: "Be good to yourself"
+		content: "Be good to yourself."
 	},
 	{
-		content: "Think *abundance*"
+		content: "Think *abundance*."
 	},
 	{
-		content: "Whatever needs to be done **do it now**"
+		content: "Whatever needs to be done **do it now**."
 	},
 	{
-		content: "Say &ldquo;**no**&rdquo;"
+		content: "Say &ldquo;**no**&rdquo;."
 	},
 	{
-		content: "Don&rsquo;t make excuses"
+		content: "Don&rsquo;t make excuses."
 	},
 	{
-		content: "Let people help you"
+		content: "Let people help you."
 	},
 	{
-		content: "If you **do** what you have always **done**, you will **get** what you have always **gotten**"
+		content: "If you **do** what you have always **done**, you will **get** what you have always **gotten**."
 	},
 	{
-		content: "Be honest with yourself"
+		content: "Be honest with yourself."
 	},
 	{
-		content: "Don&rsquo;t tolerate the intolerable"
+		content: "Don&rsquo;t tolerate the intolerable."
 	},
 	{
-		content: "If what you&rsquo;re doing isn&rsquo;t working, you must try something different"
+		content: "If what you&rsquo;re doing isn&rsquo;t working, you must try something different."
 	},
 	{
-		content: "Don&rsquo;t settle; every time you settle you get *exactly what you settled for*"
+		content: "Don&rsquo;t settle; every time you settle you get *exactly what you settled for*."
 	},
 	{
-		content: "Waste *less* time"
+		content: "Waste *less* time."
 	},
 	{
-		content: "You are the only person on this planet responsible for your needs, wants, and happiness"
+		content: "You are the only person on this planet responsible for your needs, wants, and happiness."
 	},
 	{
-		content: "Accept the consequences of your actions"
+		content: "Accept the consequences of your actions."
 	},
 	{
-		content: "What people think about you is none of your business"
+		content: "What people think about you is none of your business."
 	},
 	{
-		content: "Whatever you do, do it **100%** to your ability"
+		content: "Whatever you do, do it **100%** to your ability."
 	},
 	{
-		content: "Do something that frightens you"
+		content: "Do something that frightens you."
 	},
 	{
-		content: "Give yourself room to fail; there are no mistakes just learning experiences"
+		content: "Give yourself room to fail; there are no mistakes just learning experiences."
 	},
 	{
-		content: "Turn your judgement into appreciation"
+		content: "Turn your judgement into appreciation."
 	},
 	{
-		content: "Mindfulness means always meditating"
+		content: "Mindfulness means always meditating."
 	},
 	{
-		content: "Stop blaming, victims never succeed"
+		content: "Stop blaming, victims never succeed."
 	},
 	{
-		content: "Be clear and direct"
+		content: "Be clear and direct."
 	},
 	{
-		content: "Control is an illusion; \n\nLet go and let life happen"
+		content: "Control is an illusion; \n\nLet go and let life happen."
 	},
 	{
-		content: "Have fun; If you&rsquo;re not enjoying your time, something is wrong"
+		content: "Have fun. If you&rsquo;re not enjoying your time, something is wrong."
 	},
 	{
-		content: "Don&rsquo;t do anything in secret"
+		content: "Don&rsquo;t do anything in secret."
 	},
 	{
-		content: "Be willing to let go of what you have so that you can get what you want"
+		content: "Be willing to let go of what you have so that you can get what you want."
 	},
 	{
-		content: "Put yourself first"
+		content: "Put yourself first."
 	},
 	{
-		content: "No matter what happens \n\n**you will handle it**"
+		content: "No matter what happens \n\n**you will handle it**."
 	},
 	{
-		content: "Live with *integrity*"
+		content: "Live with *integrity*."
 	},
 	{
-		content: "Decide what feels right to you \n\n**then do it**"
+		content: "Decide what feels right to you \n\n**then do it**."
 	},
 	{
-		content: "Use these phrases more often:\n - &ldquo;I love you&rdquo;\n - &ldquo;I forgive you&rdquo;\n - &ldquo;forgive me&rdquo;\n - &ldquo;I&rsquo;m sorry&rdquo;"
+		content: "Say &ldquo;I love you&rdquo; more often."
 	},
 	{
-		content: "If you are an adult, you are capable of making your own rules"
+		content: "Say &ldquo;I forgive you&rdquo; more often."
 	},
 	{
-		content: "Face difficult situations and conflicts head on"
+		content: "Say &ldquo;I&rsquo;m sorry&rdquo; more often."
 	},
 	{
-		content: "Remove yourself from a bad situation instead of waiting for the situation to change"
+		content: "Ask for forgivness more often."
 	},
 	{
-		content: "Try asking for what you want"
+		content: "You are capable of making your own rules."
 	},
 	{
-		content: "Just do better than you did yesterday"
+		content: "Face difficult situations and conflicts head on."
+	},
+	{
+		content: "Remove yourself from a bad situation instead of waiting for the situation to change."
+	},
+	{
+		content: "Try asking for what you want."
+	},
+	{
+		content: "Do better than you did yesterday."
+	},
+	{
+		content: "Embrace the suck."
+	},
+	{
+		content: "Procrastinate wisely."
 	}
 ];
