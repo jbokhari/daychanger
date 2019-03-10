@@ -30,7 +30,7 @@ export default [
 		content: "If what you&rsquo;re doing isn&rsquo;t working, you must try something different."
 	},
 	{
-		content: "Don&rsquo;t settle; every time you settle you get *exactly what you settled for*."
+		content: "Don&rsquo;t settle, every time you settle you get *exactly what you settled for*."
 	},
 	{
 		content: "Waste *less* time."
@@ -51,7 +51,7 @@ export default [
 		content: "Do something that frightens you."
 	},
 	{
-		content: "Give yourself room to fail; there are no mistakes just learning experiences."
+		content: "Give yourself room to fail. There are no mistakes, only learning experiences."
 	},
 	{
 		content: "Turn your judgement into appreciation."
@@ -66,7 +66,7 @@ export default [
 		content: "Be clear and direct."
 	},
 	{
-		content: "Control is an illusion; \n\nLet go and let life happen."
+		content: "Control is an illusion. \nLet go and let life happen."
 	},
 	{
 		content: "Have fun. If you&rsquo;re not enjoying your time, something is wrong."

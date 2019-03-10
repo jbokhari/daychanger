@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import SearchBox from './SearchBox.js';
 import SearchResults from './SearchResults.js';
 
-export default function Search(props){
-	return (
-		<section className="search">
-			<SearchBox searchValue={props.searchValue} handleChange={props.handleSearch} handleFocus={props.handleSearchFocus} handleBlur={props.handleSearchBlur} />
-			<SearchResults showSearchResults={props.showSearchResults} searchResultsList={props.searchResultsList} />
-		</section>
-	);
+class Search extends Component{
+	render(){
+		return(
+			<section className="search">
+				<SearchBox
+					handleClickOutside={this.props.handleClickOutside}
+					searchValue={this.props.searchValue}
+					searchVisible={this.props.searchVisible}
+					handleChange={this.props.handleSearch}
+					handleFocus={this.props.handleSearchFocus}
+					handleBlur={this.props.handleSearchBlur}
+				/>
+				<SearchResults showSearchResults={this.props.showSearchResults} searchResultsList={this.props.searchResultsList} />
+			</section>
+		);
+	}
 }
+export default Search;

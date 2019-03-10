@@ -21,6 +21,8 @@ class App extends Component {
 		this.handleSearch = this.handleSearch.bind(this);
 		this.handleClickOutside = this.handleClickOutside.bind(this);
 		this.handleSearchFocus = this.handleSearchFocus.bind(this);
+		this.loadTimer = null;
+		this.searchbox = React.createRef();
 
 		this.state = {
 			cards : CardData,
@@ -36,13 +38,14 @@ class App extends Component {
 	handleOnClickNewCard(){
 
 		const self = this;
+		clearTimeout(this.loadTimer);
 		const shuffle = false; // old way was random
 		if (!shuffle){
 			this.setState(state => ({
 				loading: true,
 				currentCard : (state.currentCard + 1) % state.cards.length,
 			}));
-			setTimeout(()=>{self.setState({loading: false})}, 500);
+			this.loadTimer = setTimeout(()=>{self.setState({loading: false})}, 500);
 			return;
 		}
 		const cards = this.state.cards;
@@ -63,18 +66,17 @@ class App extends Component {
 			currentCard : newIndex,
 			history: history,
 		});
-		setTimeout(()=>{self.setState({loading: false})}, 500);
+		this.loadTimer = setTimeout(()=>{self.setState({loading: false})}, 500);
 	}
 
 	handleOnClickLastCard(){
 		const self = this;
-		if (this.state.loading )
-			return;
+		clearTimeout(this.loadTimer);
 		this.setState(state => ({
 			loading: true,
 			currentCard: (state.currentCard - 1) >= 0 ? state.currentCard - 1 : (state.cards.length - 1)
 		}));
-		setTimeout(()=>{self.setState({loading: false})}, 500);
+		this.loadTimer = setTimeout(()=>{self.setState({loading: false})}, 500);
 	}
 	handleOnClickLastCardWithHistory(){
 
@@ -90,7 +92,7 @@ class App extends Component {
 			history: history
 		});
 
-		setTimeout(()=>{self.setState({loading: false})}, 500);
+		this.loadTimer = setTimeout(()=>{self.setState({loading: false})}, 500);
 	}
 
 	handleSearch(e){
@@ -141,8 +143,10 @@ class App extends Component {
 	}
 
 	handleClickOutside(e){
-		console.log(e, this);
-		if ( this.node.contains(e.target) ){
+		console.log(this.searchbox.current, e.target);
+		// console.log(this.searchbox.current.contains(e.target));
+		return;
+		if ( this.searchbox.contains(e.target) ){
 			return;
 		} else {
 			this.setState({searchVisible: false});
@@ -154,7 +158,7 @@ class App extends Component {
 		const searchResults = this.state.searchResults;
 		if ( !searchVisible && searchResults.length > 0 ){
 			this.setState({searchVisible: true});
-			// document.addEventListener('click', this.handleClickOutside, false);
+			
 		}
 	}
 
@@ -179,7 +183,7 @@ class App extends Component {
 			history: history,
 			searchVisible : false
 		});
-		setTimeout(()=>{self.setState({loading: false})}, 500);
+		this.loadTimer = setTimeout(()=>{self.setState({loading: false})}, 500);
 
 	}
 
@@ -204,7 +208,8 @@ class App extends Component {
 		const lastEnabled = (history.length > 1);
 		const handleSearch = (e) => this.handleSearch(e);
 		const handleSearchFocus = (e) => this.handleSearchFocus(e);
-		const handleClickOutside = (e) => this.handleClickOutside(e);
+		const handleClickOutside = this.handleClickOutside;
+
 		const date = new Date()
 		const year = date.getFullYear();
 		return (
@@ -214,9 +219,10 @@ class App extends Component {
 						Card {cardNumber} of {count}
 					</div>
 					<Search
+						ref={this.searchbox}
+						handleClickOutside={handleClickOutside} 
 						handleSearch={handleSearch} 
 						handleSearchFocus={handleSearchFocus} 
-						handleClickOutsite={handleClickOutside}
 						searchValue={searchValue}
 						showSearchResults={searchVisible}
 						searchResultsList={searchResults}

@@ -7,6 +7,7 @@ body,html,#root {
 }
 
 .App {
+	font-family: "Montserrat", sans-serif;
 	background: linear-gradient(#6ca9d0, #d2f4f9);
 	display: flex;
 	justify-content: space-between;
@@ -33,12 +34,11 @@ body,html,#root {
 	/*background: white;*/
 	padding: 1rem;
 	box-sizing: border-box;
-	font-family: "Montserrat", sans-serif;
 }
 
 .header .card-number {
 	color: rgba(255,255,255,.3);
-	font-family: Arial, Helvetica Neue, sans-serif;
+
 	font-weight: 100;
 	padding-top: 7px;
 }
@@ -123,6 +123,7 @@ body,html,#root {
 	text-align: left;
 	position: relative;
 	width: 50%;
+	z-index: 10;
 }
 
 .search-box {
@@ -144,12 +145,11 @@ body,html,#root {
 
 .card .main {
 	position: relative;
-	font-size: 2rem;
+	font-size: 4rem;
 	margin: 3rem auto;
 	text-align: center;
-	font-family: "Montserrat", sans-serif;
 	color: #fff;
-	text-shadow: 1px 1px 0 rgba(100,100,200,.25);
+	text-shadow: .05em .05em 0 rgba(100,100,200,.25);
 	font-weight: 500;
 }
 .card .main p {
@@ -181,6 +181,15 @@ button:after {
 	margin-top: -5px;
 	opacity: .33;
 }
+button.new:hover{
+	background: linear-gradient(90deg, transparent, rgba(255,255,255,.1));
+}
+button.last:hover{
+	background: linear-gradient(270deg, transparent, rgba(255,255,255,.1));
+}
+button:hover:after{
+	opacity: 1;
+}
 button {
 	position: relative;
 	text-transform: uppercase;
@@ -195,29 +204,22 @@ button {
 	background: transparent;
 	position: fixed;
 	height: 100vh;
-	width: 30px;
+	max-width: 10vw;
+	width: 100%;
 	left: 0;
 	/*margin-top: 30vh;*/
 	top: 0;
-}
-
-/*.card button[disabled]:hover,
-.card button[disabled] {
-	cursor: not-allowed;
-	background: #f8f7f7;
-	color: #ddd;
-}*/
-
-.card button:hover {
-	/*background: #f8f7f7;*/
-	color: grey;
 }
 
 footer {
 	display: flex;
 	padding-bottom: 1rem;
 	text-align: center;
-	color: white;
+	letter-spacing: 1em;
+	color: rgba(255,255,255,.6);
+}
+footer:hover{
+	color: rgba(255,255,255,.75);
 }
 
 button.new:after {
@@ -245,6 +247,15 @@ button.last {
 	}
 	.card .main{
 		font-size: 8vw;
+	}
+	footer {
+		font-size: .75rem;
+	}
+
+}
+@media screen and (max-width: 480px){
+	footer {
+		font-size: .5rem;
 	}
 
 }
