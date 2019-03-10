@@ -10,6 +10,7 @@ import ReactMarkdown from 'react-markdown';
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
+document.addEventListener("touchstart", function(){}, true);
 
 class App extends Component {
 
@@ -188,7 +189,7 @@ class App extends Component {
 	}
 
 	componentDidMount(){
-
+		this.loadTimer = setTimeout(()=>{this.setState({loading: false})}, 500);
 	}
 	render() {
 		const cards = this.state.cards;
@@ -234,14 +235,14 @@ class App extends Component {
 					content={content}
 					cardNumber={cardNumber}
 				/>
-					<button
-						className="last"
+					<span
+						className="button last"
 						onClick={onClickLastCard}>
-					</button>
-					<button
-						className="new"
+					</span>
+					<span
+						className="button new"
 						onClick={onClickNewCard}>
-					</button>
+					</span>
 					<footer>
 						&copy; {year} jameel.io
 					</footer>
