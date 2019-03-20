@@ -5,8 +5,9 @@ import SearchResults from './SearchResults.js';
 
 class Search extends Component{
 	render(){
+		const searchbox = this.props.searchbox;
 		return(
-			<section className="search">
+			<div>
 				<SearchBox
 					handleClickOutside={this.props.handleClickOutside}
 					searchValue={this.props.searchValue}
@@ -15,8 +16,8 @@ class Search extends Component{
 					handleFocus={this.props.handleSearchFocus}
 					handleBlur={this.props.handleSearchBlur}
 				/>
-				<SearchResults showSearchResults={this.props.showSearchResults} searchResultsList={this.props.searchResultsList} />
-			</section>
+				<SearchResults ref={searchbox}  showSearchResults={this.props.showSearchResults} searchResultsList={this.props.searchResultsList} />
+			</div>
 		);
 	}
 }

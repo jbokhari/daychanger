@@ -3,9 +3,26 @@ import './animate.css';
 import './App.css';
 import Card from './Card.js';
 import CardData from './api/mock/card-data.js';
+import Modal from './Modal.js';
 import Search from './Search.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
 
 import ReactMarkdown from 'react-markdown';
+
+
+library.add(faInfoCircle)
+
+const WEBSITE_INFO = `#### Turn your day around
+
+*Day Changer* delivers a positive message that kicks your mind into a new and powerful direction. It contains phrases to change the trajectory of your day for the better.
+
+The idea was inspired by [Oblique Strategies](https://en.wikipedia.org/wiki/Oblique_Strategies) by Brian Enos and various books on self-development.
+
+The app, made in React, is also a way for me to test my design and coding skills.
+
+[View on github](https://github.com/jbokhari/daychanger)`;
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
@@ -20,10 +37,14 @@ class App extends Component {
 		this.handleOnClickNewCard = this.handleOnClickNewCard.bind(this);
 		this.handleOnClickLastCard = this.handleOnClickLastCard.bind(this);
 		this.handleSearch = this.handleSearch.bind(this);
-		this.handleClickOutside = this.handleClickOutside.bind(this);
+		this.handleClickOutsideSearch = this.handleClickOutsideSearch.bind(this);
+		this.handleClickOutsideModal = this.handleClickOutsideModal.bind(this);
+		this.closeModal = this.closeModal.bind(this);
+		this.openModal = this.openModal.bind(this);
 		this.handleSearchFocus = this.handleSearchFocus.bind(this);
 		this.loadTimer = null;
 		this.searchbox = React.createRef();
+		this.modal = React.createRef();
 
 		this.state = {
 			cards : CardData,
@@ -79,21 +100,18 @@ class App extends Component {
 		}));
 		this.loadTimer = setTimeout(()=>{self.setState({loading: false})}, 500);
 	}
-	handleOnClickLastCardWithHistory(){
-
-		var self = this;
-		let history = this.state.history.slice();
-
-		history = history.slice(0, history.length - 1);
-		const newIndex = history[history.length - 1];
-
-		this.setState({
-			loading: true,
-			currentCard : newIndex,
-			history: history
-		});
-
-		this.loadTimer = setTimeout(()=>{self.setState({loading: false})}, 500);
+	
+	openModal(e){
+		e.preventDefault();
+		this.setState( {
+			modalOpen: true
+		})
+	}
+	closeModal(e){
+		e.preventDefault();
+		this.setState( {
+			modalOpen: false
+		})
 	}
 
 	handleSearch(e){
@@ -134,6 +152,9 @@ class App extends Component {
 	 			);
 			}
 			searchVisible = true;
+			document.addEventListener('click', this.handleClickOutsideSearch, false);
+		} else {
+			document.removeEventListener('click', this.handleClickOutsideSearch, false);
 		}
 		this.setState({
 			searchValue: searchValue,
@@ -143,11 +164,16 @@ class App extends Component {
 
 	}
 
-	handleClickOutside(e){
-		console.log(this.searchbox.current, e.target);
-		// console.log(this.searchbox.current.contains(e.target));
-		return;
-		if ( this.searchbox.contains(e.target) ){
+	handleClickOutsideModal(e){
+		console.log(this.modal.current);
+		if ( this.modal && this.modal.current.contains(e.target) ){
+			return;
+		} else {
+			this.setState({modalOpen: false});
+		}
+	}
+	handleClickOutsideSearch(e){
+		if ( this.searchbox.current.contains(e.target) ){
 			return;
 		} else {
 			this.setState({searchVisible: false});
@@ -201,7 +227,7 @@ class App extends Component {
 		const currentCard = this.state.currentCard;
 		const content = cards[currentCard].content;
 		const cardNumber = currentCard + 1;
-		const classList = ['App'];
+		const classList = ['App', this.state.loading ? "loading" : ""];
 		const loading = this.state.loading;
 		const history = this.state.history;
 		const searchValue = this.state.searchValue;
@@ -212,45 +238,72 @@ class App extends Component {
 		const onClickNewCard = this.handleOnClickNewCard;
 		const onClickLastCard = this.handleOnClickLastCard;
 		const lastEnabled = (history.length > 1);
-		const handleSearch = (e) => this.handleSearch(e);
-		const handleSearchFocus = (e) => this.handleSearchFocus(e);
-		const handleClickOutside = this.handleClickOutside;
+		const handleSearch = this.handleSearch;
+		const handleSearchFocus = this.handleSearchFocus;
+		const handleClickOutsideSearch = this.handleClickOutsideSearch;
+		const openModal = this.openModal;
+		const closeModal = this.closeModal;
+		const modalOpen = this.state.modalOpen;
+
+		const info = WEBSITE_INFO;
+		const card = (
+			<Card 
+				history={history}
+				loading={loading}
+				content={content}
+				cardNumber={cardNumber}
+			/>
+		);
+		const modal = (
+			<div ref={this.modal}>
+				<Modal 
+					onClickOutside={this.handleClickOutsideModal}
+					closeModal={closeModal}
+					info={info}
+				/>
+			</div>
+		);
 
 		const date = new Date()
 		const year = date.getFullYear();
+		const mainContent = ( modalOpen ? modal : card);
 		return (
 			<div className={classList.join(" ")}>
 				<header className="header">
-					<div className="card-number">
-						Card {cardNumber} of {count}
+					<div className="t-left">
+						<div className="card-number">
+							Card {cardNumber} of {count} 
+						</div>
+						<div className="info">
+							<a className="info" href="#" onClick={openModal}><FontAwesomeIcon icon="info-circle" /></a>
+						</div>
 					</div>
-					<Search
-						ref={this.searchbox}
-						handleClickOutside={handleClickOutside} 
-						handleSearch={handleSearch} 
-						handleSearchFocus={handleSearchFocus} 
-						searchValue={searchValue}
-						showSearchResults={searchVisible}
-						searchResultsList={searchResults}
-					/>
+					<section ref={this.searchbox} className="search">
+					
+						<Search
+							
+							handleClickOutsideSearch={handleClickOutsideSearch} 
+							handleSearch={handleSearch} 
+							handleSearchFocus={handleSearchFocus} 
+							searchValue={searchValue}
+							showSearchResults={searchVisible}
+							searchResultsList={searchResults}
+						/>
+					</section>
 				</header>
-				<Card 
-					history={history}
-					loading={loading}
-					content={content}
-					cardNumber={cardNumber}
-				/>
-					<span
-						className="button last"
-						onClick={onClickLastCard}>
-					</span>
-					<span
-						className="button new"
-						onClick={onClickNewCard}>
-					</span>
-					<footer>
-						&copy; {year} jameel.io
-					</footer>
+				{mainContent}
+				<span
+					className="button last"
+					onClick={onClickLastCard}>
+				</span>
+				<span
+					className="button new"
+					onClick={onClickNewCard}>
+				</span>
+				<footer>
+					&copy; {year} jameel.io
+				</footer>
+				
 			</div>
 		);
 	}

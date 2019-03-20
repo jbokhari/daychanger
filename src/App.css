@@ -9,6 +9,8 @@ body{
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
+.App.loading {
+}
 .App {
 	font-family: "Montserrat", sans-serif;
 	background: linear-gradient(#6ca9d0, #d2f4f9);
@@ -17,19 +19,67 @@ body{
 	align-items: center;
 	flex-direction: column;
 	height: 100%;
-	animation: huehue 7s ease-out 0s 1;
+	animation: huehue 4s ease-out 0s 1;
 }
 
 @keyframes huehue {
 	0% {
 		filter: hue-rotate(40deg);
+		/*filter: brightness(.9) hue-rotate(40deg);*/
 	}
 	100% {
 		filter: hue-rotate(0deg);
+		/*filter: brightness(1) hue-rotate(0deg);*/
 	}
 }
+@keyframes opaopa {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes toptop {
+	0% {
+		top: 200px;
+		opacity: 0;
+	}
+	10% {
+		top: 200px;
+		opacity: 0;
+	}
+	100% {
+		top: 0;
+		opacity: 1;
+	}
+}
+.modal {
+	/*padding: 1rem;*/
+	/*background: white;*/
+	/*top: 5rem;*/
+	/*box-shadow: 10px 10px 5px rgba(0,0,0,.3);*/
+	/*max-width: 90%;*/
+	color: white;
+	text-shadow: 1px 1px 0 rgba(100,100,200,.5);
+}
+.modal a {
+	color: white;
+}
 
-.card {
+.card .main {
+	/*animation: toptop 2s ease 0s 1;*/
+}
+.header,
+.button,
+footer {
+	/*animation: opaopa 4s ease-out 0s 1;*/
+}
+.card,
+.modal {
 	max-width: 100%;
 	width: 700px;
 	max-width: 90%;
@@ -44,6 +94,14 @@ body{
 
 	font-weight: 100;
 	padding-top: 7px;
+	display:inline-block;
+}
+.header .info {
+	margin-left: 5px;
+	display:inline-block;
+}
+.header .info a {
+	color: rgba(255,255,255,.3);
 }
 .header {
 	padding-top: 3px;
